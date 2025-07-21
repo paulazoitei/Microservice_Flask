@@ -1,17 +1,19 @@
 from flask import Flask,jsonify,request
-from models.factorial_model import factorial
+from services.factorial_service import FactorialService
 
 
-def factorial_function():
-    data= request.get_json()
-    number =data.get('number')
+class FactorialController:
+    def factorial_function(self):
+        data= request.get_json()
+        number =data.get('number')
 
-    if number is None:
-        return jsonify({"error":"Missing argument"}),400
+        if number is None:
+            return jsonify({"error":"Missing argument"}),400
+        service=FactorialService()
+        result=service.factorial(number)
 
-    result=factorial(number)
 
-    return jsonify({
-        "number":number,
-        "result":result
-    })
+        return jsonify({
+            "number":number,
+            "result":result
+        })
