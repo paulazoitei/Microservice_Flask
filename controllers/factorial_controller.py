@@ -9,6 +9,11 @@ class FactorialController:
 
         if number is None:
             return jsonify({"error":"Missing argument"}),400
+        elif not isinstance(number,int):
+            return jsonify({"error":"Not int number cannot be calculated"}),400
+        elif number <0:
+            return jsonify({"error":"Negative number cannot be calculated"}),400
+
         service=FactorialService()
         result=service.factorial(number)
 

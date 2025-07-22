@@ -8,6 +8,11 @@ class FibonacciController:
 
         if n is None :
             return jsonify({"error":"Missing argument"}),400
+        elif not isinstance(n,int):
+            return jsonify({"error":"Not int number cannot be calculated"}),400
+        elif n < 0:
+            return jsonify({"error":"Negative number cannont be calculated"}),400
+
         service=FibonacciService()
         result=service.fibo(n)
         return jsonify({
