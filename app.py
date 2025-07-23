@@ -44,6 +44,7 @@ class AppFactory:
           def log_request(response):
               if request.path.startswith("/dashboard"):
                   return response
+
               logger = RequestLoggingService()
 
               endpoint = request.path
